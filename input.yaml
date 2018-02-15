@@ -75,9 +75,9 @@ metadata:
   name: mgmt-api-credentials
 type: Opaque
 data:
-#$base64management_url = Please enter management url for infinibox (http://172.20.212.104/)
-#$base64Username = Please enter username for infinibox (admin)
-#$base64Password = Please enter password for infinibox (123456)
+#$base64management_url = Please enter management url for infinibox (http://172.20.212.104/):
+#$base64Username = Please enter username for infinibox:
+#$base64Password = Please enter password for infinibox:
   management_url: $base64management_url
   username: $base64Username
   password: $base64Password
@@ -117,7 +117,7 @@ spec:
                 secretKeyRef:
                   name: mgmt-api-credentials
                   key: management_url
-          imagePullPolicy: "Never"
+          imagePullPolicy: "Always"
           volumeMounts:
             - name: export-volume
               mountPath: /export$imagepullsecret
