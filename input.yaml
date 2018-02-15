@@ -1,0 +1,130 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: infinidat-provisioner
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: infinidat-provisioner-runner
+rules:
+  - apiGroups: [""]
+    resources: ["persistentvolumes"]
+    verbs: ["get", "list", "watch", "create", "delete"]
+  - apiGroups: [""]
+    resources: ["persistentvolumeclaims"]
+    verbs: ["get", "list", "watch", "update"]
+  - apiGroups: ["storage.k8s.io"]
+    resources: ["storageclasses"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["list", "watch", "create", "update", "patch"]
+  - apiGroups: [""]
+    resources: ["services", "endpoints"]
+    verbs: ["get"]
+  - apiGroups: ["extensions"]
+    resources: ["podsecuritypolicies"]
+    resourceNames: ["infinidat-provisioner"]
+    verbs: ["use"]
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["get", "list", "watch"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v100
+metadata:
+  name: run-infinidat-provisioner
+subjects:
+  - kind: ServiceAccount
+    name: infinidat-provisioner
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: infinidat-provisioner-runner
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  creationTimestamp: 2016-02-18T19:14:38Z
+  name: provisionerconfig
+  namespace: default
+data:
+#$PoolName = Please enter pool name which should be used to provision volumes/filesystems (default):
+  pool_name: $PoolName
+#$ProvisionType = Please enter provision type which should be used to provision volumes/filesystems (THIN):
+  provision_type: $ProvisionType
+#$NFSMountOptions = Please enter nfs mount options type which will be used to mount filesystems (hard, rsize=1048576, wsize=1048576):
+  nfs_mount_options: hard, rsize=1048576, wsize=1048576
+#$NFSExportPermissions = Please enter nfs export permissions options type which will be used to mount filesystems (RW):
+  nfs_export_permissions: $NFSExportPermissions
+  max_fs: "4000"
+  max_volume: "100000"
+#$Bool_NFSSSDEnabled = Do you want SSD enabled for filesystem (false):
+  nfs_ssd_enabled: $Bool_NFSSSDEnabled
+#$Bool_NFSNoRootSquash = Do you want root squash enabled for filesystem (true):
+  nfs_no_root_squash: $Bool_NFSNoRootSquash
+---
+#echo -n "admin" | base64
+#echo -n "123456" | base64
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mgmt-api-credentials
+type: Opaque
+data:
+#$base64management_url = Please enter management url for infinibox (http://172.20.212.104/)
+#$base64Username = Please enter username for infinibox (admin)
+#$base64Password = Please enter password for infinibox (123456)
+  management_url: $base64management_url
+  username: $base64Username
+  password: $base64Password
+---
+kind: Deployment
+apiVersion: extensions/v1
+metadata:
+  name: infinidat-provisioner
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: infinidat-provisioner
+    spec:
+      serviceAccount: infinidat-provisioner
+      containers:
+        - name: infinidat-provisioner
+          image: $imagepath
+          args:
+            - $loglevel
+          env:
+            - name: MGMT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mgmt-api-credentials
+                  key: username
+            - name: MGMT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mgmt-api-credentials
+                  key: password
+            - name: MGMT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mgmt-api-credentials
+                  key: management_url
+          imagePullPolicy: "Never"
+          volumeMounts:
+            - name: export-volume
+              mountPath: /export$imagepullsecret
+      volumes:
+        - name: export-volume
+          hostPath:
+            path: /tmp/infinidat-provisioner
+---

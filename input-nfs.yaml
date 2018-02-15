@@ -1,0 +1,20 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+#Name of Storage class
+  name: nfs-storageclass
+# NFS is default provisioner so infinidat.com(without /nfs) will also work
+provisioner: infinidat.com/nfs
+parameters:
+# network space name as given in Infinibox
+  nfs_networkspace: nfs
+# Pool name as given in Infinibox
+  pool_name: default
+# Mention nfs mount options as required
+  nfs_mount_options: hard,rsize=1048576,wsize=1048576
+# Provisioning type thin Or thick
+  provision_type: thin
+# Provisioning type RW Or RO
+  nfs_export_permissions: RW
+# Reclaim policy as required
+reclaimPolicy: Delete
