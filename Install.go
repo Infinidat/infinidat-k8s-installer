@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Infinidat-k8s-provisioner-Installer/lib"
+	"infinidat-k8s-installer/lib"
 	"bufio"
 	"bytes"
 	"encoding/base64"
@@ -23,7 +23,7 @@ var operationPtr = flag.String("operation", "install", "Specify the operation to
 
 //var skipOperation = flag.String("skip","","Specify operation which you want to skip eg prompt")
 var installationPath = flag.String("path", "installation.yaml", "user can specify installation yaml")
-var imagePullPath = flag.String("imagepath", "quay.io/nileshdsalunkhe/nfsprovi:latest", "path to an image in a private repository ")
+var imagePullPath = flag.String("imagepath", "docker.io/infinidat/infinidat-k8s-provisioner:latest", "path to an image in a private repository ")
 var imagePullsecret = flag.String("imagepullsecret", "", "secret in which credential of private repo are stored")
 var loglevel = flag.Int("loglevel", 0, "to set the log level 0/1 1 for debug logs")
 
