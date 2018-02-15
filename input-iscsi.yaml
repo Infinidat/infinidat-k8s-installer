@@ -1,20 +1,19 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-# Name of Storage class
-  name: iscsi-storageclass
-# Mention /iscsi to use iscsi protocol
+#$className = Enter Storage Class name :
+  name: $className
 provisioner: infinidat.com/iscsi
 parameters:
-# File system type
-  fsType: ext3
-# Select True to create a write protected volume
-  readonly: "false"
-# network space name as given in Infinibox
-  iscsi_networkspaces: iSCSI
-# Pool name as given in Infinibox
-  pool_name: default
-# Provisioning type (thin/thick)
-  provision_type: thin
-# Reclaim policy as required (Delete/Retain)
-reclaimPolicy: Delete
+#$poolName = Enter Pool name (default):
+  pool_name: $poolName
+#$fsType = Enter requierd file system for the volume(ext3):
+  fsType: $fsType
+#$Bool_readonly = Do you want to create a write protected volume<true/false>(false):
+  readonly: $Bool_readonly
+#$ns = Network space name as given in Infinibox:<comma seperated names in case of multiple network spaces>:
+  iscsi_networkspaces: $ns
+#$prov = Provisioning type <thin/thick>(thin):
+  provision_type: $prov
+#$rp = Reclaim policy<Delete/Retain>(Delete):
+reclaimPolicy: $rp
