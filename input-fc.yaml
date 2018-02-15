@@ -12,6 +12,6 @@ parameters:
 #$fstype = Please enter filesystem type by which newly created volume should be formatted (ext3) :
   fsType: $fstype
 #$Bool_readonly = Do you want volumes to be readonly <true/false>(false):
-  readonly: "false"
+  readonly: $Bool_readonly
 #$reclaim = Enter reclaim policy for storage class <Delete/Retain> (Delete):
 reclaimPolicy: $reclaim
