@@ -13,5 +13,7 @@ parameters:
   fsType: $fstype
 #$Bool_readonly = Do you want volumes to be readonly <true/false>(false):
   readonly: $Bool_readonly
+#$Bool_SSDEnabled = Do you want SSD enabled for volumes (true):
+  ssd_enabled: $Bool_SSDEnabled
 #$reclaim = Enter reclaim policy for storage class <Delete/Retain> (Delete):
 reclaimPolicy: $reclaim

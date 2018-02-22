@@ -15,5 +15,7 @@ parameters:
   iscsi_networkspaces: $ns
 #$prov = Provisioning type <thin/thick>(thin):
   provision_type: $prov
+#$Bool_SSDEnabled = Do you want SSD enabled for volumes (true):
+  ssd_enabled: $Bool_SSDEnabled
 #$rp = Reclaim policy<Delete/Retain>(Delete):
 reclaimPolicy: $rp
