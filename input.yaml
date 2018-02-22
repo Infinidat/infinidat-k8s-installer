@@ -51,7 +51,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   creationTimestamp: 2016-02-18T19:14:38Z
-  name: provisionerconfig
+  name: infinidatprovisionerconfig
   namespace: default
 data:
 #$PoolName = Please enter pool name which should be used to provision volumes/filesystems (default):
@@ -64,8 +64,8 @@ data:
   nfs_export_permissions: $NFSExportPermissions
   max_fs: "4000"
   max_volume: "100000"
-#$Bool_NFSSSDEnabled = Do you want SSD enabled for filesystem (true):
-  nfs_ssd_enabled: $Bool_NFSSSDEnabled
+#$Bool_SSDEnabled = Do you want SSD enabled for filesystems/volumes (true):
+  ssd_enabled: $Bool_SSDEnabled
 #$Bool_NFSNoRootSquash = Do you want root squash enabled for filesystem (true):
   nfs_no_root_squash: $Bool_NFSNoRootSquash
 ---
