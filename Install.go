@@ -13,6 +13,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"github.com/howeyc/gopass"
 )
 
 // Apis supported by targeted kubernetes cluster
@@ -219,11 +220,18 @@ func validateKubernetes() (bool, error) {
 /*
 prompt user for value
  */
-func prompt(value string) string {
+func prompt(key,value string) string {
 	for {
 		var input string
 		fmt.Println(value)
-		fmt.Scanln(&input)
+		if strings.Contains(strings.ToUpper(key),"PASSWORD"){
+			barray,err:=gopass.GetPasswdMasked()
+			if err==nil{
+				input = string(barray)
+			}
+		}else{
+			fmt.Scanln(&input)
+		}
 		if len(input) == 0 {
 			start := strings.LastIndex(value, "(")
 			end := strings.LastIndex(value, ")")
@@ -242,7 +250,7 @@ func promptAndGetValues(paramsTobePrompted *lib.LinkedMap) map[string]string {
 	iterator := paramsTobePrompted.GetIterator()
 	for k, v := iterator(); k != nil; k, v = iterator() {
 		if strings.HasPrefix(*k, "#$") {
-			copyOfParams[*k] = prompt(*v)
+			copyOfParams[*k] = prompt(*k,*v)
 		}
 		if strings.HasPrefix(*k, "apiVersion") {
 			//will not prompt
