@@ -7,13 +7,15 @@ provisioner: infinidat.com/iscsi
 parameters:
 #$poolName = Enter Pool name (default):
   pool_name: $poolName
-#$fsType = Enter requierd file system for the volume(ext3):
+#$fsType = Enter filesystem type by which newly created volume should be formatted (ext4):
   fsType: $fsType
 #$Bool_readonly = Do you want to create a write protected volume<true/false>(false):
   readonly: $Bool_readonly
-#$ns = Network space name as given in Infinibox:<comma seperated names in case of multiple network spaces>:
+#$ns = Network space name as given in Infinibox:<comma separated names in case of multiple network spaces>:
   iscsi_networkspaces: $ns
 #$prov = Provisioning type <thin/thick>(thin):
   provision_type: $prov
+#$Bool_SSDEnabled = Do you want SSD enabled for volumes (true):
+  ssd_enabled: $Bool_SSDEnabled
 #$rp = Reclaim policy<Delete/Retain>(Delete):
 reclaimPolicy: $rp
