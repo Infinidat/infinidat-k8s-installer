@@ -64,7 +64,7 @@ data:
   nfs_export_permissions: $NFSExportPermissions
   max_fs: "4000"
   max_volume: "100000"
-#$Bool_NFSSSDEnabled = Do you want SSD enabled for filesystem (false):
+#$Bool_NFSSSDEnabled = Do you want SSD enabled for filesystem (true):
   nfs_ssd_enabled: $Bool_NFSSSDEnabled
 #$Bool_NFSNoRootSquash = Do you want root squash enabled for filesystem (true):
   nfs_no_root_squash: $Bool_NFSNoRootSquash
