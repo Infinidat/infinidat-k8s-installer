@@ -17,7 +17,7 @@ parameters:
   nfs_export_permissions: $export_permissions
 #$Bool_SSDEnabled = Do you want SSD enabled for volumes (true):
   ssd_enabled: $Bool_SSDEnabled
-#$Bool_NoRootSquash = Do you want root squash enabled for filesystem (true):
+#$Bool_NoRootSquash =  Should root access be allowed for NFS file systems (true):
   no_root_squash: $Bool_NoRootSquash
 #$reclaim_policy =  Reclaim policy as required<Delete\Retain>(Delete):
 reclaimPolicy: $reclaim_policy
