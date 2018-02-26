@@ -118,11 +118,4 @@ spec:
                   name: mgmt-api-credentials
                   key: management_url
           imagePullPolicy: "Always"
-          volumeMounts:
-            - name: export-volume
-              mountPath: /export$imagepullsecret
-      volumes:
-        - name: export-volume
-          hostPath:
-            path: /tmp/infinidat-provisioner
 ---
