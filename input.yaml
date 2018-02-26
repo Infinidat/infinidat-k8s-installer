@@ -66,7 +66,7 @@ data:
   max_volume: "100000"
 #$Bool_SSDEnabled = Do you want SSD enabled for filesystems/volumes (true):
   ssd_enabled: $Bool_SSDEnabled
-#$Bool_NoRootSquash = Do you want root squash enabled for filesystem (true):
+#$Bool_NoRootSquash = Should root access be allowed for NFS file systems (true):
   no_root_squash: $Bool_NoRootSquash
 ---
 apiVersion: v1
