@@ -58,15 +58,15 @@ data:
   pool_name: $PoolName
 #$ProvisionType = Please enter provision type which should be used to provision volumes/filesystems (THIN):
   provision_type: $ProvisionType
-#$NFSMountOptions = Please enter nfs mount options type which will be used to mount filesystems (hard, rsize=1048576, wsize=1048576):
+#$NFSMountOptions = Please enter nfs mount options which will be used to mount filesystems (hard, rsize=1048576, wsize=1048576):
   nfs_mount_options: hard, rsize=1048576, wsize=1048576
-#$NFSExportPermissions = Please enter nfs export permissions options type which will be used to mount filesystems (RW):
+#$NFSExportPermissions = Please enter nfs export permissions options which will be used to mount filesystems (RW):
   nfs_export_permissions: $NFSExportPermissions
   max_fs: "4000"
   max_volume: "100000"
 #$Bool_SSDEnabled = Do you want SSD enabled for filesystems/volumes (true):
   ssd_enabled: $Bool_SSDEnabled
-#$Bool_NoRootSquash = Do you want root squash enabled for filesystem (true):
+#$Bool_NoRootSquash = Should root access be allowed for NFS file systems (true):
   no_root_squash: $Bool_NoRootSquash
 ---
 apiVersion: v1
