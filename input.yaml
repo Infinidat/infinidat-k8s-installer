@@ -60,7 +60,7 @@ data:
   provision_type: $ProvisionType
 #$NFSMountOptions = Please enter nfs mount options which will be used to mount filesystems (hard, rsize=1048576, wsize=1048576):
   nfs_mount_options: hard, rsize=1048576, wsize=1048576
-#$NFSExportPermissions = Please enter nfs export permissions options type which will be used to mount filesystems (RW):
+#$NFSExportPermissions = Please enter nfs export permissions options which will be used to mount filesystems (RW):
   nfs_export_permissions: $NFSExportPermissions
   max_fs: "4000"
   max_volume: "100000"
