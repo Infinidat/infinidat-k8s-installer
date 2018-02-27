@@ -7,15 +7,15 @@ provisioner: infinidat.com/nfs
 parameters:
 #$ns =  Enter network space name as given in Infinibox:
   nfs_networkspace: $ns
-#$pool = Enter pool name as given in Infinibox(default):
+#$pool = Enter pool name which should be used to provision filesystems (default):
   pool_name: $pool
-#$mount_options = Mention nfs mount options as required(hard,rsize=1048576,wsize=1048576):
+#$mount_options = Enter nfs mount options which will be used to mount filesystems (hard, rsize=1048576, wsize=1048576):
   nfs_mount_options: $mount_options
-#$prov =  Provisioning type <thin\thick>(thin):
+#$prov =  Enter provision type which should be used to provision filesystems (THIN):
   provision_type: $prov
-#$export_permissions = Select export permissions for file systems<RW\RO>(RW):
+#$export_permissions = Enter nfs export permissions options which will be used to mount filesystems (RW):
   nfs_export_permissions: $export_permissions
-#$Bool_SSDEnabled = Do you want SSD enabled for volumes (true):
+#$Bool_SSDEnabled = Do you want SSD enabled for filesystems (true):
   ssd_enabled: $Bool_SSDEnabled
 #$Bool_NoRootSquash =  Should root access be allowed for NFS file systems (true):
   no_root_squash: $Bool_NoRootSquash
