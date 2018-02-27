@@ -19,5 +19,5 @@ parameters:
   ssd_enabled: $Bool_SSDEnabled
 #$Bool_NoRootSquash =  Should root access be allowed for NFS file systems (true):
   no_root_squash: $Bool_NoRootSquash
-#$reclaim_policy =  Reclaim policy as required<Delete\Retain>(Delete):
+#$reclaim_policy =  Enter reclaim policy for storage class <Delete/Retain> (Delete):
 reclaimPolicy: $reclaim_policy
