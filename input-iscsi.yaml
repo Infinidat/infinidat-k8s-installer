@@ -17,5 +17,5 @@ parameters:
   provision_type: $prov
 #$Bool_SSDEnabled = Do you want SSD enabled for volumes (true):
   ssd_enabled: $Bool_SSDEnabled
-#$rp = Enter reclaim policy<Delete/Retain>(Delete):
+#$rp = Enter reclaim policy for storage class <Delete/Retain> (Delete):
 reclaimPolicy: $rp
