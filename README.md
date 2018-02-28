@@ -1,9 +1,7 @@
-"# infinidat-k8s-installer" 
-
 infinidat-k8s-installer automates installation of infinidat k8s provisioner. it prompts user for configuration options and deploys all resources related to provisioner.
 
-Steps to install provisioner
-1.  Download the INFINIDAT Kubernetes provisioner package in the Kubernetes master node and unzip it.
+**Steps to install provisioner**
+1. Clone this repository. use go build to build binary from this code. (input*.yaml should be present same directory)
 2.	Execute the installer file using command “./infinidat-k8s-installer”. The installer will then prompt the user to enter values which will set be the initial configmap of the provisioner.
 If you press Enter without giving input. Installer will consider default value i.e. Written inside brackets ().
 ```
@@ -48,7 +46,7 @@ you can pass following parameters to installer as follow
 ```
 ./infinidat-k8s-installer -imagepath=<reponame/imagename:tag> -imagesecret= secretename
 ```
-secret is optional if your private repo doesnt required any authentication. creation of secret is expained here https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+secret is optional if your private repo doesnt required any authentication. creation of secret is expained [here](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
 
 4.	You can now create a StorageClass using installer with following parameters. 
 Note: installer will help to create yaml for storage you need to create storage class using kubectl create or oc create commands
