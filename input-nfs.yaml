@@ -9,7 +9,7 @@ parameters:
   nfs_networkspace: $ns
 #$pool = Enter pool name which should be used to provision filesystems (default):
   pool_name: $pool
-#$mount_options = Enter nfs mount options which will be used to mount filesystems (hard, rsize=1048576, wsize=1048576):
+#$mount_options = Enter nfs mount options which will be used to mount filesystems (hard,rsize=1048576,wsize=1048576):
   nfs_mount_options: $mount_options
 #$prov =  Enter provision type which should be used to provision filesystems (THIN):
   provision_type: $prov
