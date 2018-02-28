@@ -58,8 +58,8 @@ data:
   pool_name: $PoolName
 #$ProvisionType = Please enter provision type which should be used to provision volumes/filesystems (THIN):
   provision_type: $ProvisionType
-#$NFSMountOptions = Please enter nfs mount options which will be used to mount filesystems (hard, rsize=1048576, wsize=1048576):
-  nfs_mount_options: hard, rsize=1048576, wsize=1048576
+#$NFSMountOptions = Please enter nfs mount options which will be used to mount filesystems (hard,rsize=1048576,wsize=1048576):
+  nfs_mount_options: $NFSMountOptions
 #$NFSExportPermissions = Please enter nfs export permissions options which will be used to mount filesystems (RW):
   nfs_export_permissions: $NFSExportPermissions
   max_fs: "4000"
